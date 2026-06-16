@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Module 04 — Tokens &amp; Tokenization | AI &amp; LLM Systems 101</title>
+    <meta name="description" content="What tokens are, why text is split this way, and how it relates to context limits and pricing." />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script>
+      window.COURSE_BASE = "../";
+      window.COURSE_PAGE = "module";
+      window.COURSE_MODULE = "04";
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header id="site-header"></header>
+
+    <main id="main" class="page">
+      <p class="eyebrow">Module 04</p>
+      <h1>Tokens &amp; Tokenization</h1>
+      <p class="reading-time">⏱ ~12 min read</p>
+
+      <div class="box box-learn">
+        <h2>What you'll learn</h2>
+        <ul>
+          <li>What a token is and why models work in tokens, not letters or words.</li>
+          <li>How tokens connect to context limits and pricing.</li>
+          <li>A hands-on feel for tokenization via an interactive demo.</li>
+        </ul>
+      </div>
+
+      <h2>Models don't read words — they read tokens</h2>
+      <p>
+        Before an LLM can process your text, the text is chopped into pieces
+        called <strong>tokens</strong>. A token is often a whole common word, but
+        it can also be a piece of a word, a space, or a punctuation mark. The
+        process of splitting text this way is called
+        <strong>tokenization</strong>, and the model has a fixed
+        <em>vocabulary</em> of tokens it learned during training.
+      </p>
+      <p>
+        Why not just use words? Splitting into sub-word pieces lets the model
+        handle any text — rare words, typos, names, code, other languages — by
+        combining smaller known pieces, instead of choking on words it has never
+        seen. Common words like "the" are usually a single token; an unusual word
+        like "tokenization" might split into several.
+      </p>
+
+      <div class="box box-analogy">
+        <h3>IT analogy</h3>
+        <p>
+          Tokens are the model's <strong>character encoding</strong>, a bit like
+          how text is stored as bytes. Just as a single emoji can take several
+          bytes, a single long word can take several tokens. The model always
+          counts in tokens, even though you think in words.
+        </p>
+      </div>
+
+      <h2>Why tokens matter for cost and limits</h2>
+      <p>Two practical consequences make tokens worth understanding:</p>
+      <ul>
+        <li>
+          <strong>Pricing.</strong> Most commercial LLM APIs bill
+          <em>per token</em> — both the tokens you send (input) and the tokens the
+          model generates (output). Longer prompts and longer answers cost more.
+          Verbose, repetitive prompts quietly run up usage.
+        </li>
+        <li>
+          <strong>Context limits.</strong> Every model has a maximum
+          <em>context window</em> measured in tokens (covered in Module 6). If
+          your prompt plus the conversation exceeds it, something has to be
+          dropped, summarized, or split. A long PDF can easily blow past the
+          limit.
+        </li>
+      </ul>
+      <p>
+        A handy rough guide for English: a token averages about ¾ of a word, so
+        ~1,000 tokens is roughly 750 words. This varies a lot with language, code,
+        and formatting — treat it as a ballpark, not a rule.
+      </p>
+
+      <div class="demo" id="demo-tokenizer">
+        <h3>Try it: approximate tokenizer</h3>
+        <p class="demo-hint">
+          Type or paste some text. This demo splits it using a simple,
+          transparent heuristic (split on spaces and punctuation; break long words
+          into ~4-character chunks). <strong>It's an approximation</strong> to
+          build intuition — a real tokenizer uses a learned vocabulary, so exact
+          counts will differ.
+        </p>
+        <label for="tok-input">Your text</label>
+        <textarea id="tok-input" spellcheck="false">Tokenization splits text into tokens. Try pasting a sentence here!</textarea>
+        <div class="demo-stats">
+          <div class="demo-stat"><strong id="tok-count">0</strong> approx. tokens</div>
+          <div class="demo-stat"><strong id="tok-words">0</strong> words</div>
+          <div class="demo-stat"><strong id="tok-chars">0</strong> characters</div>
+        </div>
+        <div id="tok-output" class="token-output" aria-live="polite"></div>
+      </div>
+
+      <p>
+        Notice how short, common words tend to be one chunk, while long words
+        break into several — and how punctuation and spacing add up. That's why
+        the token count is usually higher than the word count.
+      </p>
+
+      <div class="box box-takeaways">
+        <h2>Key takeaways</h2>
+        <ul>
+          <li>Models process text as tokens (whole words or sub-word pieces), not raw letters.</li>
+          <li>Sub-word tokens let models handle rare or unseen text gracefully.</li>
+          <li>Tokens drive both pricing (per-token billing) and context limits.</li>
+          <li>Rough rule: ~1,000 tokens ≈ 750 English words — but it varies.</li>
+        </ul>
+      </div>
+
+      <h2>Check your understanding</h2>
+      <p class="text-muted">Score 75% or higher to mark this module complete.</p>
+      <div id="quiz"></div>
+
+      <nav id="module-nav"></nav>
+    </main>
+
+    <footer id="site-footer"></footer>
+
+    <script src="../js/course.js"></script>
+    <script src="../js/progress.js"></script>
+    <script src="../js/quiz.js"></script>
+    <script src="../js/demos.js"></script>
+  </body>
+</html>

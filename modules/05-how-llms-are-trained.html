@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Module 05 — How LLMs are Trained | AI &amp; LLM Systems 101</title>
+    <meta name="description" content="Pretraining, fine-tuning, alignment/RLHF, and what a knowledge cutoff means." />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script>
+      window.COURSE_BASE = "../";
+      window.COURSE_PAGE = "module";
+      window.COURSE_MODULE = "05";
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header id="site-header"></header>
+
+    <main id="main" class="page">
+      <p class="eyebrow">Module 05</p>
+      <h1>How LLMs are Trained</h1>
+      <p class="reading-time">⏱ ~13 min read</p>
+
+      <div class="box box-learn">
+        <h2>What you'll learn</h2>
+        <ul>
+          <li>The three big phases: pretraining, fine-tuning, and alignment.</li>
+          <li>What RLHF is, conceptually, and why it exists.</li>
+          <li>What a "knowledge cutoff" is and why it matters in practice.</li>
+        </ul>
+      </div>
+
+      <h2>Phase 1: Pretraining — learning language broadly</h2>
+      <p>
+        Training usually starts with <strong>pretraining</strong>. The model is
+        shown an enormous body of text and, over and over, tries to predict the
+        next token (Module 3). Each time it's wrong, its parameters are nudged
+        slightly. Repeat this billions of times and the model gradually absorbs
+        grammar, facts, writing styles, reasoning patterns, and a great deal of
+        general world knowledge.
+      </p>
+      <p>
+        Pretraining is the expensive, time-consuming part — large data, lots of
+        GPUs, significant cost and energy. The result is a "base model" that's
+        good at predicting text but not yet shaped into a helpful assistant.
+      </p>
+
+      <h2>Phase 2: Fine-tuning — specializing the model</h2>
+      <p>
+        <strong>Fine-tuning</strong> continues training the base model on a
+        smaller, more targeted dataset to adapt its behavior. You might fine-tune
+        for a domain (legal, medical, support tickets), a style (concise, formal),
+        or a format (always answer as JSON). It's far cheaper than pretraining
+        because you're adjusting an already-capable model rather than starting from
+        scratch.
+      </p>
+
+      <div class="box box-analogy">
+        <h3>IT analogy</h3>
+        <p>
+          Pretraining is like hiring someone with a broad general education.
+          Fine-tuning is the <strong>onboarding and role-specific training</strong>
+          that teaches them your team's tools and conventions. Same person, now
+          tailored to the job.
+        </p>
+      </div>
+
+      <h2>Phase 3: Alignment — making it helpful and safe</h2>
+      <p>
+        A raw model that just predicts text isn't necessarily helpful, honest, or
+        safe. <strong>Alignment</strong> steers it toward responses people
+        actually want. The best-known technique is
+        <strong>RLHF — Reinforcement Learning from Human Feedback</strong>.
+      </p>
+      <p>Conceptually, RLHF works like this:</p>
+      <ol>
+        <li>The model produces several candidate answers to many prompts.</li>
+        <li>People rank which answers are better (more helpful, accurate, appropriate).</li>
+        <li>
+          Those human preferences are used to train the model to produce more of
+          the kind of answers people preferred.
+        </li>
+      </ol>
+      <p>
+        The effect is a model that follows instructions, declines harmful
+        requests, and adopts a helpful tone. Alignment reduces bad behavior but
+        doesn't make a model perfect — it still has the limitations we'll cover in
+        Module 10.
+      </p>
+
+      <h2>Knowledge cutoff: the model's "as of" date</h2>
+      <p>
+        Because a model learns from a fixed snapshot of training data, it has a
+        <strong>knowledge cutoff</strong>: a point in time after which it simply
+        hasn't seen anything. Ask about an event, product, or patch released after
+        the cutoff and the base model may not know — or worse, may confidently
+        guess.
+      </p>
+      <p>This has real consequences for IT:</p>
+      <ul>
+        <li>
+          Answers about fast-moving topics (new CVEs, recent software versions)
+          can be stale.
+        </li>
+        <li>
+          The model often won't tell you it's out of date unless asked — it has no
+          inherent sense of "today."
+        </li>
+        <li>
+          To stay current, tools pair the model with live data via web access or
+          <strong>retrieval</strong> (Module 8, RAG). The base model's parameters
+          alone are frozen at the cutoff.
+        </li>
+      </ul>
+
+      <div class="box box-note">
+        <h3>Does using a model "train" it on your data?</h3>
+        <p>
+          Not automatically. Typing into a chatbot is <em>inference</em>, not
+          training — your message doesn't instantly become part of the model.
+          However, some providers may <em>log</em> your inputs and could use them
+          to improve future models depending on their terms. That's a privacy and
+          governance question (Module 11), separate from how training works.
+        </p>
+      </div>
+
+      <div class="box box-takeaways">
+        <h2>Key takeaways</h2>
+        <ul>
+          <li>Pretraining teaches broad language from huge text; it's the costly phase.</li>
+          <li>Fine-tuning cheaply specializes a base model for a domain, style, or format.</li>
+          <li>Alignment (e.g. RLHF) uses human preferences to make models helpful and safe.</li>
+          <li>A knowledge cutoff means the base model can't know events after its training snapshot.</li>
+        </ul>
+      </div>
+
+      <h2>Check your understanding</h2>
+      <p class="text-muted">Score 75% or higher to mark this module complete.</p>
+      <div id="quiz"></div>
+
+      <nav id="module-nav"></nav>
+    </main>
+
+    <footer id="site-footer"></footer>
+
+    <script src="../js/course.js"></script>
+    <script src="../js/progress.js"></script>
+    <script src="../js/quiz.js"></script>
+    <script src="../js/demos.js"></script>
+  </body>
+</html>

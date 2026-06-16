@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Module 02 — Machine Learning vs. Deep Learning | AI &amp; LLM Systems 101</title>
+    <meta name="description" content="Learning from data, training vs. inference, what a model is, and why GPUs matter." />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script>
+      window.COURSE_BASE = "../";
+      window.COURSE_PAGE = "module";
+      window.COURSE_MODULE = "02";
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header id="site-header"></header>
+
+    <main id="main" class="page">
+      <p class="eyebrow">Module 02</p>
+      <h1>Machine Learning vs. Deep Learning</h1>
+      <p class="reading-time">⏱ ~12 min read</p>
+
+      <div class="box box-learn">
+        <h2>What you'll learn</h2>
+        <ul>
+          <li>What "learning from data" really means.</li>
+          <li>The difference between training and inference.</li>
+          <li>What "a model" actually is — and what parameters/weights are.</li>
+          <li>Why GPUs are central to modern AI.</li>
+        </ul>
+      </div>
+
+      <h2>Learning from data instead of rules</h2>
+      <p>
+        Traditional software is rules a person writes: <code>if X then Y</code>.
+        Machine learning flips this. Instead of writing the rules, you provide
+        many <strong>examples</strong> (data) and let an algorithm discover the
+        patterns. Show it thousands of labeled photos of cats and dogs, and it
+        learns to tell them apart — without anyone writing "a cat has pointy
+        ears."
+      </p>
+      <p>
+        This matters because some problems are nearly impossible to write rules
+        for. Nobody can enumerate every rule that distinguishes spam from real
+        email, or a fraudulent charge from a legitimate one. Learning from
+        examples handles that fuzziness far better than hand-coded logic.
+      </p>
+
+      <h2>Deep learning: learning the features too</h2>
+      <p>
+        Classic machine learning often needs humans to decide
+        <em>which</em> aspects of the data matter (the "features") — for
+        example, telling the system to look at email sender, subject length, and
+        certain keywords. <strong>Deep learning</strong> uses neural networks
+        with many stacked layers that learn useful features
+        <em>automatically</em> from raw data. That's why it excels at images,
+        audio, and language, where hand-picking features is impractical.
+      </p>
+      <p>
+        A neural network is loosely inspired by neurons: simple units connected
+        in layers, each passing signals forward. "Deep" just means "many layers."
+        More layers can capture more complex patterns — at the cost of needing
+        more data and computing power.
+      </p>
+
+      <h2>Training vs. inference</h2>
+      <p>This distinction comes up constantly, so it's worth nailing down:</p>
+      <ul>
+        <li>
+          <strong>Training</strong> is the learning phase. The system processes
+          large amounts of data and gradually adjusts its internal numbers to get
+          better at the task. Training is expensive, slow, and usually done once
+          (or occasionally) up front.
+        </li>
+        <li>
+          <strong>Inference</strong> is using the finished model to answer a new
+          request. It's comparatively cheap and fast — this is the part end users
+          actually touch when they ask a chatbot a question.
+        </li>
+      </ul>
+
+      <div class="box box-analogy">
+        <h3>IT analogy</h3>
+        <p>
+          Training is like <strong>building and indexing a database</strong>:
+          heavy, done occasionally, resource-intensive. Inference is like
+          <strong>running a query</strong> against it: quick and repeatable. You
+          wouldn't rebuild the index for every query, and you don't retrain a
+          model for every question.
+        </p>
+      </div>
+
+      <h2>So what is "a model"?</h2>
+      <p>
+        After training, all that learning is stored as a big set of numbers
+        called <strong>parameters</strong> (also called <strong>weights</strong>).
+        A "model" is essentially this collection of tuned numbers plus the
+        structure that uses them. When people say a model has "7 billion
+        parameters," they mean it has 7 billion of these learned numbers.
+      </p>
+      <p>
+        You can think of parameters as a vast set of configuration values that
+        were dialed in automatically during training. They encode everything the
+        model "knows." Crucially, the model doesn't store a tidy database of
+        facts you can look up or edit — the knowledge is spread across all those
+        numbers.
+      </p>
+
+      <h2>Why GPUs matter</h2>
+      <p>
+        Neural networks boil down to enormous amounts of the same kind of math —
+        multiplying and adding big grids of numbers (matrices), over and over.
+        <strong>GPUs</strong> (graphics processing units) were built to do many
+        similar calculations in parallel for rendering graphics, and that same
+        strength makes them dramatically faster than ordinary CPUs for this work.
+      </p>
+      <p>
+        This is why AI hardware, cloud GPU capacity, and energy use are now major
+        IT and budget considerations. Specialized AI accelerators (TPUs, NPUs)
+        extend the same idea. The takeaway: modern AI is as much about parallel
+        compute as it is about clever algorithms.
+      </p>
+
+      <div class="box box-takeaways">
+        <h2>Key takeaways</h2>
+        <ul>
+          <li>ML learns patterns from examples instead of relying on hand-written rules.</li>
+          <li>Deep learning uses many-layered neural networks that learn features automatically.</li>
+          <li>Training (learning) is expensive and occasional; inference (answering) is cheap and frequent.</li>
+          <li>A model is a large set of learned parameters (weights); GPUs make training and inference practical.</li>
+        </ul>
+      </div>
+
+      <h2>Check your understanding</h2>
+      <p class="text-muted">Score 75% or higher to mark this module complete.</p>
+      <div id="quiz"></div>
+
+      <nav id="module-nav"></nav>
+    </main>
+
+    <footer id="site-footer"></footer>
+
+    <script src="../js/course.js"></script>
+    <script src="../js/progress.js"></script>
+    <script src="../js/quiz.js"></script>
+    <script src="../js/demos.js"></script>
+  </body>
+</html>

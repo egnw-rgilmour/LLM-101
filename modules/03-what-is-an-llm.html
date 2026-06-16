@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Module 03 — What is an LLM? | AI &amp; LLM Systems 101</title>
+    <meta name="description" content="Next-token prediction, parameters and model size, and why fluent can still be wrong." />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script>
+      window.COURSE_BASE = "../";
+      window.COURSE_PAGE = "module";
+      window.COURSE_MODULE = "03";
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header id="site-header"></header>
+
+    <main id="main" class="page">
+      <p class="eyebrow">Module 03</p>
+      <h1>What is an LLM?</h1>
+      <p class="reading-time">⏱ ~13 min read</p>
+
+      <div class="box box-learn">
+        <h2>What you'll learn</h2>
+        <ul>
+          <li>The one core trick behind LLMs: next-token prediction.</li>
+          <li>What "parameters" and "model size" actually tell you.</li>
+          <li>Why an LLM can sound fluent and authoritative yet be wrong.</li>
+        </ul>
+      </div>
+
+      <h2>One simple idea, scaled up enormously</h2>
+      <p>
+        A <strong>Large Language Model (LLM)</strong> is a deep-learning model
+        trained on a huge amount of text. Underneath the impressive results, it
+        does one deceptively simple thing: <strong>predict the next token</strong>
+        (the next word or word-fragment) given everything written so far.
+      </p>
+      <p>
+        Give it "The capital of France is" and it predicts "Paris" is a very
+        likely next token. It appends that, then predicts the next token, and the
+        next — one chunk at a time — until it has produced a full answer. That's
+        it. The magic is that doing this extremely well, at massive scale,
+        produces text that looks like reasoning, summarizing, translating, and
+        coding.
+      </p>
+
+      <div class="box box-analogy">
+        <h3>IT analogy</h3>
+        <p>
+          It's <strong>autocomplete on an industrial scale</strong>. Your phone
+          suggests the next word from a tiny model; an LLM does the same thing
+          with a vastly larger model trained on far more text, so its suggestions
+          can stretch into coherent paragraphs and code.
+        </p>
+      </div>
+
+      <h2>What "next-token prediction" really implies</h2>
+      <p>
+        Because the model is choosing likely <em>next text</em>, a few important
+        consequences follow:
+      </p>
+      <ul>
+        <li>
+          It's optimizing for <strong>plausible</strong> continuations, not
+          <strong>verified true</strong> ones. Fluent and correct are different
+          goals.
+        </li>
+        <li>
+          It has no built-in fact-checker or live database. Its "knowledge" is
+          patterns baked into its parameters during training.
+        </li>
+        <li>
+          It generates text it has never seen verbatim — it's recombining
+          patterns, not copying answers from a lookup table.
+        </li>
+      </ul>
+
+      <h2>Parameters and model size</h2>
+      <p>
+        As covered in Module 2, the model's learning is stored in
+        <strong>parameters</strong> (weights). "Model size" usually refers to how
+        many parameters it has — millions, billions, sometimes more. Roughly
+        speaking, more parameters means more <em>capacity</em> to capture
+        patterns.
+      </p>
+      <p>
+        But bigger is not automatically better. A smaller model trained on better
+        data, and tuned well for a task, can beat a larger one. Parameter count is
+        one signal among several — alongside the training data, the tuning, and
+        how well the model fits your actual job. Don't treat "more parameters" as
+        a quality guarantee.
+      </p>
+
+      <h2>Why fluent can still be wrong</h2>
+      <p>
+        This is the single most important thing for IT staff to internalize. An
+        LLM produces grammatical, confident, well-structured prose
+        <em>regardless</em> of whether the content is accurate. The smooth tone is
+        a product of predicting natural-sounding text, not a sign of correctness.
+      </p>
+      <p>
+        So an LLM can invent a citation, a configuration flag, or an API endpoint
+        that sounds completely real but doesn't exist. We'll dig into this in
+        Module 10 (Limitations &amp; Risks). For now, adopt the working rule:
+        <strong>treat LLM output as a knowledgeable-sounding draft that must be
+        verified</strong> before you rely on it for anything that matters.
+      </p>
+
+      <div class="box box-note">
+        <h3>Why answers can vary</h3>
+        <p>
+          Ask the same question twice and you may get two different answers. LLMs
+          usually pick the next token by <em>sampling</em> from a range of likely
+          options rather than always taking the single most likely one. That
+          built-in randomness is useful for creativity but makes exact
+          repeatability tricky — more on this in Module 6.
+        </p>
+      </div>
+
+      <div class="box box-takeaways">
+        <h2>Key takeaways</h2>
+        <ul>
+          <li>An LLM repeatedly predicts the next token; that simple loop produces fluent text.</li>
+          <li>It optimizes for plausible wording, not verified truth.</li>
+          <li>Parameter count hints at capacity but isn't a guarantee of quality.</li>
+          <li>Fluent and confident ≠ correct — always verify what matters.</li>
+        </ul>
+      </div>
+
+      <h2>Check your understanding</h2>
+      <p class="text-muted">Score 75% or higher to mark this module complete.</p>
+      <div id="quiz"></div>
+
+      <nav id="module-nav"></nav>
+    </main>
+
+    <footer id="site-footer"></footer>
+
+    <script src="../js/course.js"></script>
+    <script src="../js/progress.js"></script>
+    <script src="../js/quiz.js"></script>
+    <script src="../js/demos.js"></script>
+  </body>
+</html>

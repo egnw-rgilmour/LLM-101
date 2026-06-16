@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Module 08 — Retrieval-Augmented Generation (RAG) | AI &amp; LLM Systems 101</title>
+    <meta name="description" content="Grounding answers in your own documents: why companies use RAG and the retrieve-then-generate flow." />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script>
+      window.COURSE_BASE = "../";
+      window.COURSE_PAGE = "module";
+      window.COURSE_MODULE = "08";
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header id="site-header"></header>
+
+    <main id="main" class="page">
+      <p class="eyebrow">Module 08</p>
+      <h1>Retrieval-Augmented Generation (RAG)</h1>
+      <p class="reading-time">⏱ ~12 min read</p>
+
+      <div class="box box-learn">
+        <h2>What you'll learn</h2>
+        <ul>
+          <li>The problem RAG solves: grounding answers in your own, current documents.</li>
+          <li>The retrieve-then-generate flow, step by step.</li>
+          <li>Why companies favor RAG — and why answers still need checking.</li>
+        </ul>
+      </div>
+
+      <h2>The problem: the model doesn't know your stuff</h2>
+      <p>
+        A base LLM only knows what was in its training data, frozen at its
+        knowledge cutoff (Module 5). It has never seen your internal wiki, your
+        latest policies, or last week's incident report. Ask it about them and it
+        will either admit ignorance or — worse — guess plausibly.
+      </p>
+      <p>
+        <strong>Retrieval-Augmented Generation (RAG)</strong> fixes this without
+        retraining the model. The idea: when a question comes in, first
+        <em>retrieve</em> the most relevant documents from your own collection,
+        then hand them to the model as context so it can <em>generate</em> an
+        answer grounded in that material.
+      </p>
+
+      <h2>The retrieve-then-generate flow</h2>
+      <figure class="diagram">
+        <svg viewBox="0 0 720 170" role="img" aria-labelledby="rag-title rag-desc">
+          <title id="rag-title">RAG retrieve-then-generate flow</title>
+          <desc id="rag-desc">
+            A question goes to a retriever, which searches a document store and
+            returns relevant passages. The question plus those passages go to the
+            LLM, which produces a grounded answer.
+          </desc>
+          <defs>
+            <marker id="arrow" markerWidth="9" markerHeight="9" refX="6" refY="3" orient="auto">
+              <path d="M0,0 L6,3 L0,6 Z" fill="#2563b3" />
+            </marker>
+          </defs>
+          <rect x="10" y="60" width="110" height="46" rx="8" fill="#e6eef8" stroke="#2563b3" />
+          <text x="65" y="88" font-size="13" font-weight="700" fill="#1d4e8f" text-anchor="middle">Question</text>
+
+          <rect x="160" y="60" width="120" height="46" rx="8" fill="#fbf0d9" stroke="#8a5a00" />
+          <text x="220" y="82" font-size="12.5" font-weight="700" fill="#8a5a00" text-anchor="middle">Retriever</text>
+          <text x="220" y="98" font-size="10.5" fill="#8a5a00" text-anchor="middle">(vector search)</text>
+
+          <rect x="160" y="10" width="120" height="34" rx="8" fill="#e3f3ea" stroke="#1f7a4d" />
+          <text x="220" y="32" font-size="11.5" font-weight="700" fill="#1f7a4d" text-anchor="middle">Document store</text>
+
+          <rect x="330" y="60" width="150" height="46" rx="8" fill="#f3e6f5" stroke="#7a2f87" />
+          <text x="405" y="82" font-size="12.5" font-weight="700" fill="#7a2f87" text-anchor="middle">Question +</text>
+          <text x="405" y="98" font-size="12.5" font-weight="700" fill="#7a2f87" text-anchor="middle">relevant passages</text>
+
+          <rect x="530" y="60" width="90" height="46" rx="8" fill="#e6eef8" stroke="#2563b3" />
+          <text x="575" y="88" font-size="13" font-weight="700" fill="#1d4e8f" text-anchor="middle">LLM</text>
+
+          <rect x="630" y="60" width="80" height="46" rx="8" fill="#e3f3ea" stroke="#1f7a4d" />
+          <text x="670" y="82" font-size="12" font-weight="700" fill="#1f7a4d" text-anchor="middle">Grounded</text>
+          <text x="670" y="97" font-size="12" font-weight="700" fill="#1f7a4d" text-anchor="middle">answer</text>
+
+          <line x1="120" y1="83" x2="158" y2="83" stroke="#2563b3" stroke-width="2" marker-end="url(#arrow)" />
+          <line x1="220" y1="60" x2="220" y2="46" stroke="#2563b3" stroke-width="2" marker-end="url(#arrow)" />
+          <line x1="220" y1="44" x2="220" y2="58" stroke="#2563b3" stroke-width="2" marker-end="url(#arrow)" />
+          <line x1="280" y1="83" x2="328" y2="83" stroke="#2563b3" stroke-width="2" marker-end="url(#arrow)" />
+          <line x1="480" y1="83" x2="528" y2="83" stroke="#2563b3" stroke-width="2" marker-end="url(#arrow)" />
+          <line x1="620" y1="83" x2="628" y2="83" stroke="#2563b3" stroke-width="2" marker-end="url(#arrow)" />
+        </svg>
+        <figcaption>Retrieve relevant passages first, then generate an answer using them.</figcaption>
+      </figure>
+
+      <p>Concretely, a RAG system usually:</p>
+      <ol>
+        <li>Splits your documents into chunks and stores their embeddings in a vector database (done ahead of time).</li>
+        <li>Takes the user's question and finds the most relevant chunks via semantic search (Module 7).</li>
+        <li>Inserts those chunks into the prompt alongside the question.</li>
+        <li>Asks the LLM to answer using <em>that</em> supplied context — ideally citing which passages it used.</li>
+      </ol>
+
+      <div class="box box-analogy">
+        <h3>IT analogy</h3>
+        <p>
+          RAG is an <strong>open-book exam</strong>. Instead of relying on what the
+          model memorized, you hand it the relevant pages right before it answers.
+          The retriever is the index that finds the right pages fast.
+        </p>
+      </div>
+
+      <h2>Why companies use RAG</h2>
+      <ul>
+        <li><strong>Current &amp; private knowledge.</strong> Answers can reflect your own, up-to-date documents the base model never saw.</li>
+        <li><strong>No retraining.</strong> Update the document store anytime; the system retrieves the latest content. Far cheaper and faster than fine-tuning for changing information.</li>
+        <li><strong>Traceability.</strong> Good RAG systems cite their sources, so users can verify and trust answers.</li>
+        <li><strong>Tighter scope.</strong> Grounding in approved documents reduces (not eliminates) off-topic or invented answers.</li>
+      </ul>
+
+      <div class="box box-note">
+        <h3>RAG reduces errors — it doesn't guarantee correctness</h3>
+        <p>
+          Retrieval can surface the wrong passage, miss the best one, or pull from
+          an outdated document. And even with the right text in front of it, the
+          model can still misread or misattribute it. Treat citations as something
+          to <strong>check</strong>, not blind proof. Garbage in, grounded-sounding
+          garbage out.
+        </p>
+      </div>
+
+      <div class="box box-takeaways">
+        <h2>Key takeaways</h2>
+        <ul>
+          <li>RAG grounds answers in your own documents by retrieving relevant text, then generating.</li>
+          <li>The flow is retrieve-then-generate, usually powered by vector search.</li>
+          <li>It keeps answers current without retraining and enables source citations.</li>
+          <li>It lowers but doesn't remove the risk of wrong answers — still verify.</li>
+        </ul>
+      </div>
+
+      <h2>Check your understanding</h2>
+      <p class="text-muted">Score 75% or higher to mark this module complete.</p>
+      <div id="quiz"></div>
+
+      <nav id="module-nav"></nav>
+    </main>
+
+    <footer id="site-footer"></footer>
+
+    <script src="../js/course.js"></script>
+    <script src="../js/progress.js"></script>
+    <script src="../js/quiz.js"></script>
+    <script src="../js/demos.js"></script>
+  </body>
+</html>
