@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI &amp; LLM Systems 101 — Interactive Course</title>
+    <meta
+      name="description"
+      content="A beginner-friendly, vendor-neutral internal course on AI and Large Language Model systems for IT teams."
+    />
+    <link rel="stylesheet" href="css/styles.css" />
+    <script>
+      window.COURSE_BASE = "";
+      window.COURSE_PAGE = "home";
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header id="site-header"></header>
+
+    <main id="main" class="page">
+      <section class="hero">
+        <p class="eyebrow">Internal IT training</p>
+        <h1>AI &amp; LLM Systems 101</h1>
+        <p class="lede">
+          A plain-language, vendor-neutral course on how modern AI and Large
+          Language Model (LLM) systems actually work — built for IT teams of
+          every skill level. No math degree required.
+        </p>
+      </section>
+
+      <section class="progress-panel" aria-labelledby="progress-heading">
+        <h2 id="progress-heading" style="margin-top: 0; border: none; padding: 0;">
+          Your progress
+        </h2>
+        <div
+          id="progress-bar"
+          class="progress-bar"
+          role="progressbar"
+          aria-valuemin="0"
+          aria-valuemax="100"
+          aria-valuenow="0"
+          aria-labelledby="progress-label"
+        >
+          <div id="progress-bar-fill" class="progress-bar-fill"></div>
+        </div>
+        <div class="progress-meta">
+          <span id="progress-label">0 of 12 modules complete (0%)</span>
+          <button id="reset-progress" type="button" class="btn btn-secondary">
+            Reset progress
+          </button>
+        </div>
+        <p id="storage-notice" class="demo-hint" hidden style="margin-top: 0.7rem;">
+          Note: your browser is blocking local storage on this page (common when
+          opening files directly), so progress can't be saved between visits.
+          Everything still works — completion just won't persist.
+        </p>
+      </section>
+
+      <section aria-labelledby="start-heading" class="box box-learn">
+        <h2 id="start-heading">New here? Start with this</h2>
+        <p>
+          Work through the modules in order — each takes about 10–15 minutes and
+          ends with a short quiz. Pass the quiz (75% or better) to mark a module
+          complete. Your progress bar fills as you go. If you only read one
+          module, make it
+          <a href="modules/11-security-privacy-governance.html"
+            >Module 11: Security, Privacy &amp; Governance</a
+          >.
+        </p>
+        <p>
+          See <a href="about.html">About</a> for how to use the course and an
+          important disclaimer, or jump to the
+          <a href="glossary.html">Glossary</a> any time you hit an unfamiliar term.
+        </p>
+      </section>
+
+      <h2 id="modules">Modules</h2>
+      <div id="module-list" class="module-grid">
+        <!-- Module cards are generated from Course.modules in course.js. -->
+        <noscript>
+          <p>
+            This course uses JavaScript for navigation, quizzes and progress
+            tracking. Please enable JavaScript to use it.
+          </p>
+        </noscript>
+      </div>
+    </main>
+
+    <footer id="site-footer"></footer>
+
+    <script src="js/course.js"></script>
+    <script src="js/progress.js"></script>
+  </body>
+</html>

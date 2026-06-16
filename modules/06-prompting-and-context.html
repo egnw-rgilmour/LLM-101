@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Module 06 — Prompting &amp; Context | AI &amp; LLM Systems 101</title>
+    <meta name="description" content="Prompts, system instructions, context windows, why models forget, and prompt tips. Includes a temperature demo." />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script>
+      window.COURSE_BASE = "../";
+      window.COURSE_PAGE = "module";
+      window.COURSE_MODULE = "06";
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header id="site-header"></header>
+
+    <main id="main" class="page">
+      <p class="eyebrow">Module 06</p>
+      <h1>Prompting &amp; Context</h1>
+      <p class="reading-time">⏱ ~14 min read</p>
+
+      <div class="box box-learn">
+        <h2>What you'll learn</h2>
+        <ul>
+          <li>What prompts and system instructions are.</li>
+          <li>What a context window is and why models "forget."</li>
+          <li>How temperature/sampling changes output — with a live demo.</li>
+          <li>Practical prompt-engineering tips you can use today.</li>
+        </ul>
+      </div>
+
+      <h2>Prompts and system instructions</h2>
+      <p>
+        A <strong>prompt</strong> is simply the input you give the model: your
+        question, instruction, and any context you include. The model responds by
+        predicting a continuation. Better prompts produce better responses,
+        because you're giving the model more to work with.
+      </p>
+      <p>
+        Many tools also have a <strong>system instruction</strong> (or "system
+        prompt") set behind the scenes. It establishes the assistant's role,
+        rules, and tone <em>before</em> your messages — for example, "You are a
+        helpful internal IT assistant. Be concise. Never invent ticket numbers."
+        Users don't usually see it, but it shapes every reply.
+      </p>
+
+      <h2>The context window: the model's working memory</h2>
+      <p>
+        Everything the model considers for a single response — the system
+        instruction, your prompt, and the recent back-and-forth — must fit inside
+        its <strong>context window</strong>, measured in tokens (Module 4). Think
+        of it as the model's short-term working memory for this one request.
+      </p>
+      <p>
+        When a conversation grows longer than the context window, the oldest parts
+        fall out of view. That's why a chatbot can seem to <strong>"forget"</strong>
+        something you said much earlier: it literally no longer sees it. The model
+        has no persistent memory between requests unless the application
+        deliberately stores and re-supplies information.
+      </p>
+
+      <div class="box box-analogy">
+        <h3>IT analogy</h3>
+        <p>
+          The context window is like a <strong>fixed-size cache</strong>. New
+          information pushes old information out once it's full. If something
+          important scrolled off, you have to feed it back in — the model won't
+          recall it on its own.
+        </p>
+      </div>
+
+      <h2>Temperature: the randomness dial</h2>
+      <p>
+        When the model picks the next token, it's choosing from a ranked list of
+        likely options. <strong>Temperature</strong> controls how adventurous that
+        choice is. Low temperature makes the model strongly favor the single most
+        likely token, giving focused, repeatable output. High temperature flattens
+        the odds so less-likely tokens get picked more often, giving varied, more
+        "creative" — and less predictable — output.
+      </p>
+
+      <div class="demo" id="demo-temperature">
+        <h3>Try it: temperature &amp; sampling</h3>
+        <p class="demo-hint">
+          Imagine the model is finishing the sentence "The server crashed, so I
+          decided to ___." Drag the slider to see how temperature reshapes the
+          chance each word gets picked. (Illustrative probabilities — no real
+          model involved.) The green bar marks the current most-likely word.
+        </p>
+        <label for="temp-slider">
+          Temperature: <span id="temp-value" class="temp-readout">0.70</span>
+        </label>
+        <input type="range" id="temp-slider" min="1" max="150" value="70"
+          aria-describedby="temp-note" />
+        <div id="temp-bars" style="margin-top: 1rem;"></div>
+        <p id="temp-note" class="demo-hint" role="status" aria-live="polite" style="margin-top: 0.8rem;"></p>
+      </div>
+
+      <p>
+        For factual, structured, or repeatable tasks, lower temperature is usually
+        safer. For brainstorming or varied phrasing, higher temperature helps.
+        Either way, remember the randomness contributes to why answers can differ
+        between runs (Module 10).
+      </p>
+
+      <h2>Practical prompting tips</h2>
+      <ul>
+        <li><strong>Give context.</strong> State the audience, goal, and any constraints. "Explain to a non-technical manager…" beats "Explain…".</li>
+        <li><strong>Specify the format.</strong> Ask for a bulleted list, a table, JSON, or a word limit if you need it.</li>
+        <li><strong>Show an example.</strong> One good example of the input/output you want steers the model strongly.</li>
+        <li><strong>Break up big tasks.</strong> Ask for an outline first, then expand — rather than everything at once.</li>
+        <li><strong>Tell it what to do if unsure.</strong> e.g. "If you don't know, say so rather than guessing." This reduces (not eliminates) made-up answers.</li>
+        <li><strong>Iterate.</strong> Treat the first response as a draft and refine your prompt.</li>
+      </ul>
+
+      <div class="box box-takeaways">
+        <h2>Key takeaways</h2>
+        <ul>
+          <li>A prompt is your input; a system instruction sets the assistant's role and rules.</li>
+          <li>The context window is finite working memory measured in tokens — overflow causes "forgetting."</li>
+          <li>Temperature trades repeatability (low) for variety (high).</li>
+          <li>Clear context, explicit format, and examples reliably improve results.</li>
+        </ul>
+      </div>
+
+      <h2>Check your understanding</h2>
+      <p class="text-muted">Score 75% or higher to mark this module complete.</p>
+      <div id="quiz"></div>
+
+      <nav id="module-nav"></nav>
+    </main>
+
+    <footer id="site-footer"></footer>
+
+    <script src="../js/course.js"></script>
+    <script src="../js/progress.js"></script>
+    <script src="../js/quiz.js"></script>
+    <script src="../js/demos.js"></script>
+  </body>
+</html>

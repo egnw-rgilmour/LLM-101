@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Module 11 — Security, Privacy &amp; Governance | AI &amp; LLM Systems 101</title>
+    <meta name="description" content="The most important module for IT: data handling, third-party risk, shadow IT, cloud vs. local, logging, compliance, and vendor evaluation." />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script>
+      window.COURSE_BASE = "../";
+      window.COURSE_PAGE = "module";
+      window.COURSE_MODULE = "11";
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header id="site-header"></header>
+
+    <main id="main" class="page">
+      <p class="eyebrow">Module 11 · Most important for IT</p>
+      <h1>Security, Privacy &amp; Governance</h1>
+      <p class="reading-time">⏱ ~15 min read</p>
+
+      <div class="box box-learn">
+        <h2>What you'll learn</h2>
+        <ul>
+          <li>The core data-handling risk of third-party AI tools.</li>
+          <li>What shadow IT looks like with AI, and why it spreads.</li>
+          <li>Cloud-API vs. self-hosted/local trade-offs.</li>
+          <li>Logging, retention, and compliance considerations.</li>
+          <li>A vendor-neutral checklist for evaluating an AI vendor.</li>
+        </ul>
+      </div>
+
+      <p class="lede">
+        This is the module that matters most for IT. The technology is interesting,
+        but the day-to-day risk is about <strong>where your data goes</strong> and
+        <strong>who controls it</strong>.
+      </p>
+
+      <h2>The core risk: data leaves your control</h2>
+      <p>
+        When someone pastes text into a third-party AI tool, that data is
+        transmitted to, and often processed and stored by, an outside provider.
+        Depending on the provider's terms, it may be <strong>retained, logged, or
+        used to improve their models</strong>. Once it leaves your boundary, you no
+        longer fully control it.
+      </p>
+      <p>
+        The danger is that it feels harmless — it's just a chat box. But employees
+        paste source code, customer records, contracts, credentials, incident
+        details, and personal data without thinking of it as "sending data to a
+        vendor." Treat every external AI tool as a
+        <strong>third-party data processor</strong>, because that's what it is.
+      </p>
+
+      <div class="box box-note">
+        <h3>Golden rule</h3>
+        <p>
+          <strong>Don't paste anything into a third-party AI tool that you
+          wouldn't email to an outside company.</strong> Secrets, regulated data
+          (personal, health, financial), and confidential IP need explicit approval
+          and an appropriate tool — not an ad-hoc consumer chatbot.
+        </p>
+      </div>
+
+      <h2>Shadow IT: AI's fast lane</h2>
+      <p>
+        <strong>Shadow IT</strong> is employees using tools without IT's knowledge
+        or approval. AI supercharges it: countless free, browser-based tools, a
+        genuine productivity boost, and a low barrier to entry mean staff adopt
+        them faster than IT can vet them. A well-meaning employee summarizing a
+        confidential document in a random web tool is a classic example.
+      </p>
+      <p>Reducing shadow IT is mostly about giving people a sanctioned path:</p>
+      <ul>
+        <li>Publish a clear, practical acceptable-use policy (see below).</li>
+        <li>Offer approved tools that are good enough that people don't go looking elsewhere.</li>
+        <li>Educate on the "why," not just the "no" — people follow rules they understand.</li>
+      </ul>
+
+      <h2>Cloud-API vs. self-hosted / local models</h2>
+      <p>A central architectural choice with direct data-governance impact:</p>
+      <ul>
+        <li>
+          <strong>Cloud-API models.</strong> You send data to a provider's service
+          and get responses back. Pros: powerful, scalable, little infrastructure
+          to maintain, always up to date. Cons: data leaves your environment, so you
+          depend entirely on the vendor's security, retention, and contractual
+          commitments.
+        </li>
+        <li>
+          <strong>Self-hosted / local models.</strong> You run a model on your own
+          servers (or even a workstation). Pros: data stays in-house, maximum
+          control, can work fully offline. Cons: you own the infrastructure, cost,
+          maintenance, and expertise; capable models need real hardware.
+        </li>
+      </ul>
+      <p>
+        Neither is universally "more secure." A well-governed cloud service with a
+        strong contract can be safer than a poorly run internal deployment. The
+        right answer depends on data sensitivity, compliance obligations, budget,
+        and in-house skills. Many organizations mix both: local/private for
+        sensitive data, cloud for lower-risk tasks.
+      </p>
+
+      <h2>Logging, retention, and compliance</h2>
+      <ul>
+        <li>
+          <strong>Logging &amp; retention.</strong> If prompts and outputs are
+          logged, that store can contain sensitive data — and becomes subject to
+          breaches, legal discovery, and retention rules. Ask what's logged, where
+          it's stored, for how long, and who can access it.
+        </li>
+        <li>
+          <strong>Training on your data.</strong> Will your inputs be used to train
+          or improve the vendor's models? Many enterprise tiers let you opt out or
+          contractually forbid it — confirm in writing, don't assume.
+        </li>
+        <li>
+          <strong>Data residency.</strong> Some regulations require data to stay in
+          a region. Check where processing and storage physically happen.
+        </li>
+        <li>
+          <strong>Regulatory scope.</strong> Personal, health, financial, and
+          contractual data carry obligations (e.g. privacy laws, sector rules) that
+          don't disappear because "an AI did it." Loop in legal/compliance early.
+        </li>
+        <li>
+          <strong>Access &amp; auditability.</strong> Who in the org can use the
+          tool, with what data, and can you audit that usage?
+        </li>
+      </ul>
+
+      <div class="box box-analogy">
+        <h3>IT analogy</h3>
+        <p>
+          Evaluating an AI vendor is the same discipline as evaluating any
+          <strong>cloud SaaS that will hold your data</strong>: data flows,
+          retention, encryption, access control, certifications, and contract
+          terms. AI doesn't need a brand-new rulebook — it needs your existing
+          third-party risk process applied consistently.
+        </p>
+      </div>
+
+      <h2>A vendor-neutral evaluation checklist</h2>
+      <p>When an AI tool lands on your desk, ask:</p>
+      <ol>
+        <li><strong>Data handling:</strong> What data does it receive, and is it stored, logged, or used for training? Can we opt out?</li>
+        <li><strong>Residency &amp; retention:</strong> Where is data processed/stored, and for how long?</li>
+        <li><strong>Security posture:</strong> Encryption in transit/at rest, access controls, and recognized certifications or audits?</li>
+        <li><strong>Compliance fit:</strong> Does it meet the regulations that apply to the data it will touch?</li>
+        <li><strong>Contractual terms:</strong> What do the terms of service and data-processing agreement actually commit to?</li>
+        <li><strong>Access control &amp; auditability:</strong> Can we manage who uses it and review usage?</li>
+        <li><strong>Deployment model:</strong> Cloud, app, or local — and does that match the data's sensitivity?</li>
+        <li><strong>Business need:</strong> What real problem does it solve, and is the value worth the risk and cost?</li>
+      </ol>
+
+      <div class="box box-note">
+        <h3>Start with an acceptable-use policy</h3>
+        <p>
+          A practical first governance step is a short, clear policy stating which
+          categories of data may (and may not) be shared with which kinds of tools,
+          and where to get an approved tool. Clear guardrails let people use AI
+          productively <em>and</em> safely — far better than a blanket ban that
+          just pushes usage into the shadows.
+        </p>
+      </div>
+
+      <div class="box box-takeaways">
+        <h2>Key takeaways</h2>
+        <ul>
+          <li>The core risk is data leaving your control — treat every external AI tool as a third-party processor.</li>
+          <li>Don't paste anything you wouldn't email to an outside company.</li>
+          <li>Shadow IT spreads fast with AI; counter it with clear policy and good sanctioned tools.</li>
+          <li>Cloud vs. local is a data-governance trade-off, not a fixed winner.</li>
+          <li>Scrutinize logging, retention, training-use, residency, and compliance — and apply your existing vendor-risk process.</li>
+        </ul>
+      </div>
+
+      <h2>Check your understanding</h2>
+      <p class="text-muted">Score 75% or higher to mark this module complete.</p>
+      <div id="quiz"></div>
+
+      <nav id="module-nav"></nav>
+    </main>
+
+    <footer id="site-footer"></footer>
+
+    <script src="../js/course.js"></script>
+    <script src="../js/progress.js"></script>
+    <script src="../js/quiz.js"></script>
+    <script src="../js/demos.js"></script>
+  </body>
+</html>

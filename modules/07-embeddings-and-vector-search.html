@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Module 07 — Embeddings &amp; Vector Search | AI &amp; LLM Systems 101</title>
+    <meta name="description" content="Turning meaning into numbers, semantic similarity, vector databases, and how it differs from keyword search." />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script>
+      window.COURSE_BASE = "../";
+      window.COURSE_PAGE = "module";
+      window.COURSE_MODULE = "07";
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header id="site-header"></header>
+
+    <main id="main" class="page">
+      <p class="eyebrow">Module 07</p>
+      <h1>Embeddings &amp; Vector Search</h1>
+      <p class="reading-time">⏱ ~13 min read</p>
+
+      <div class="box box-learn">
+        <h2>What you'll learn</h2>
+        <ul>
+          <li>What an embedding is: turning meaning into numbers.</li>
+          <li>How semantic similarity and vector search work.</li>
+          <li>What a vector database is and how it differs from keyword search.</li>
+        </ul>
+      </div>
+
+      <h2>Turning meaning into numbers</h2>
+      <p>
+        An <strong>embedding</strong> is a list of numbers (a
+        <strong>vector</strong>) that represents the <em>meaning</em> of a piece of
+        text. A model converts text into these numbers so that pieces with similar
+        meaning end up with similar numbers — that is, <strong>close together</strong>
+        in a mathematical space. Real embeddings have hundreds or thousands of
+        dimensions; you can't picture that directly, but the idea scales from a
+        simple 2- or 3-number version.
+      </p>
+      <p>
+        The key property: "How do I reset my password?" and "I forgot my login"
+        land near each other, even though they share almost no words. Meanwhile
+        "What's the weather?" lands far away. Closeness encodes similarity of
+        meaning, not spelling.
+      </p>
+
+      <div class="box box-analogy">
+        <h3>IT analogy</h3>
+        <p>
+          Think of embeddings as <strong>geocoordinates for meaning</strong>. Two
+          shops on the same street have nearby coordinates; two unrelated shops in
+          different cities are far apart. Embeddings give every phrase a "location"
+          so you can measure how near in meaning any two phrases are.
+        </p>
+      </div>
+
+      <h2>Semantic vs. keyword search</h2>
+      <p>
+        Traditional <strong>keyword search</strong> matches literal words. Search
+        "car won't start" and it looks for those exact words; it may miss a
+        document that says "vehicle fails to crank." <strong>Semantic search</strong>
+        compares <em>embeddings</em> instead, so it finds results by meaning —
+        matching synonyms and paraphrases keyword search would miss.
+      </p>
+      <p>
+        Neither is strictly better for everything. Keyword search is precise for
+        exact terms, error codes, or product IDs. Semantic search shines when users
+        phrase things differently from the source text. Many real systems combine
+        both.
+      </p>
+
+      <div class="demo" id="demo-embeddings">
+        <h3>Try it: semantic similarity</h3>
+        <p class="demo-hint">
+          Pick a phrase. The list shows which other phrases are "most similar" by
+          meaning, using small hand-authored illustrative vectors (3 numbers each).
+          Real embeddings use many more dimensions learned from data — this just
+          conveys the concept.
+        </p>
+        <label for="emb-select">Choose a phrase</label>
+        <select id="emb-select"></select>
+        <div id="emb-results" style="margin-top: 1rem;" aria-live="polite"></div>
+      </div>
+
+      <p>
+        Notice how the IT-support phrases cluster together, the weather phrases
+        cluster together, and the finance phrases cluster together — even when they
+        share no words. That clustering by meaning is exactly what makes embeddings
+        useful.
+      </p>
+
+      <h2>Vector databases</h2>
+      <p>
+        Once you've turned thousands or millions of documents into embeddings, you
+        need somewhere to store them and a fast way to find the closest matches to
+        a query. That's a <strong>vector database</strong>: it specializes in
+        storing vectors and performing quick <em>nearest-neighbor</em> lookups —
+        "show me the 5 stored items closest in meaning to this query."
+      </p>
+      <p>
+        The typical flow: embed your documents once and store them; at query time,
+        embed the user's question and ask the vector database for the nearest
+        stored items. This is the engine behind semantic search over an internal
+        knowledge base — and the retrieval step in RAG, which is next.
+      </p>
+
+      <div class="box box-takeaways">
+        <h2>Key takeaways</h2>
+        <ul>
+          <li>An embedding represents meaning as a vector of numbers; similar meanings sit close together.</li>
+          <li>Semantic search matches by meaning; keyword search matches literal words.</li>
+          <li>A vector database stores embeddings and finds nearest matches quickly.</li>
+          <li>This powers meaning-based search over your own documents — and underpins RAG.</li>
+        </ul>
+      </div>
+
+      <h2>Check your understanding</h2>
+      <p class="text-muted">Score 75% or higher to mark this module complete.</p>
+      <div id="quiz"></div>
+
+      <nav id="module-nav"></nav>
+    </main>
+
+    <footer id="site-footer"></footer>
+
+    <script src="../js/course.js"></script>
+    <script src="../js/progress.js"></script>
+    <script src="../js/quiz.js"></script>
+    <script src="../js/demos.js"></script>
+  </body>
+</html>

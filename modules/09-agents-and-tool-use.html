@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Module 09 — Agents &amp; Tool Use | AI &amp; LLM Systems 101</title>
+    <meta name="description" content="Function/tool calling, agents that take actions, and the reliability and safety implications." />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script>
+      window.COURSE_BASE = "../";
+      window.COURSE_PAGE = "module";
+      window.COURSE_MODULE = "09";
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header id="site-header"></header>
+
+    <main id="main" class="page">
+      <p class="eyebrow">Module 09</p>
+      <h1>Agents &amp; Tool Use</h1>
+      <p class="reading-time">⏱ ~12 min read</p>
+
+      <div class="box box-learn">
+        <h2>What you'll learn</h2>
+        <ul>
+          <li>What tool use / function calling lets an LLM do.</li>
+          <li>What an "agent" is and how it chains steps.</li>
+          <li>The reliability and safety implications of letting AI take actions.</li>
+        </ul>
+      </div>
+
+      <h2>Tool use: giving the model hands</h2>
+      <p>
+        On its own, an LLM can only produce text. <strong>Tool use</strong> (also
+        called <strong>function calling</strong>) changes that. The application
+        gives the model a menu of functions it's allowed to request — a
+        calculator, a web search, a database lookup, "create a ticket," "send an
+        email." When the model decides a tool would help, it outputs a structured
+        request; the application runs it and feeds the result back so the model can
+        continue.
+      </p>
+      <p>
+        This is powerful because it fills the LLM's gaps. It's bad at arithmetic
+        and frozen at its knowledge cutoff — but it can call a calculator and a
+        live search to compensate. The model decides <em>what</em> to call; your
+        code controls <em>whether</em> and <em>how</em> it actually runs.
+      </p>
+
+      <div class="box box-analogy">
+        <h3>IT analogy</h3>
+        <p>
+          Tool use is like giving a smart but sandboxed script a set of
+          <strong>approved API calls</strong>. It can request an action, but it
+          only gets the capabilities you expose — and you decide the permissions
+          on each one.
+        </p>
+      </div>
+
+      <h2>From single answers to agents</h2>
+      <p>
+        An <strong>agent</strong> is what you get when you let the model
+        <em>loop</em>: reason about a goal, choose an action or tool, observe the
+        result, then decide the next step — repeating until the task is done. Instead
+        of answering once, it plans and executes a sequence of steps.
+      </p>
+      <p>
+        For example, an IT agent asked to "diagnose why a user can't print" might:
+        check the print queue (tool), read the device status (tool), search the
+        knowledge base (tool), then summarize a fix. Each step's result informs the
+        next. That chaining is what makes agents feel capable — and what makes them
+        risky.
+      </p>
+
+      <h2>Why actions raise the stakes</h2>
+      <p>
+        When a model only writes text, a mistake is just wrong text you can ignore.
+        When an agent can <strong>act</strong> — change a record, send a message,
+        restart a service, spend money — a mistake has real-world consequences.
+        Several factors make this harder than a single Q&amp;A:
+      </p>
+      <ul>
+        <li>
+          <strong>Errors compound.</strong> A wrong assumption in step 2 can derail
+          steps 3 through 10. Small early mistakes snowball.
+        </li>
+        <li>
+          <strong>Non-determinism.</strong> The same task can play out differently
+          each run (Module 10), making behavior harder to test and predict.
+        </li>
+        <li>
+          <strong>Prompt injection.</strong> If an agent reads web pages or
+          documents, hidden malicious instructions in that content can try to
+          hijack its actions (Module 10). An agent with real permissions is a
+          juicier target.
+        </li>
+      </ul>
+
+      <h2>Sensible safeguards</h2>
+      <p>The good news: these are familiar IT controls applied to a new actor.</p>
+      <ul>
+        <li><strong>Least privilege.</strong> Give the agent only the specific, minimal permissions it needs — never blanket admin access.</li>
+        <li><strong>Human-in-the-loop.</strong> Require explicit approval before high-impact or irreversible actions (deleting data, sending external email, spending).</li>
+        <li><strong>Log everything.</strong> Record what the agent decided, which tools it called, and with what inputs, so actions are auditable.</li>
+        <li><strong>Sandbox &amp; rate-limit.</strong> Constrain where it can act and how often; test in non-production first.</li>
+        <li><strong>Fail safe.</strong> Default to doing nothing when uncertain, and make it easy for a human to stop or reverse.</li>
+      </ul>
+
+      <div class="box box-note">
+        <h3>Rule of thumb</h3>
+        <p>
+          The more autonomy and access an agent has, the more rigorously it must be
+          constrained, monitored, and reviewed. Capability and oversight should rise
+          together — never grant broad action permissions just because a demo looked
+          impressive.
+        </p>
+      </div>
+
+      <div class="box box-takeaways">
+        <h2>Key takeaways</h2>
+        <ul>
+          <li>Tool use lets a model request actions (search, lookups, API calls) and use the results.</li>
+          <li>An agent loops — plan, act, observe, repeat — to complete multi-step tasks.</li>
+          <li>Actions turn mistakes into real-world consequences, and errors compound across steps.</li>
+          <li>Apply least privilege, human approval for risky steps, and thorough logging.</li>
+        </ul>
+      </div>
+
+      <h2>Check your understanding</h2>
+      <p class="text-muted">Score 75% or higher to mark this module complete.</p>
+      <div id="quiz"></div>
+
+      <nav id="module-nav"></nav>
+    </main>
+
+    <footer id="site-footer"></footer>
+
+    <script src="../js/course.js"></script>
+    <script src="../js/progress.js"></script>
+    <script src="../js/quiz.js"></script>
+    <script src="../js/demos.js"></script>
+  </body>
+</html>

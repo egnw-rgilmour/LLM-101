@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Module 12 — The AI Tool Landscape | AI &amp; LLM Systems 101</title>
+    <meta name="description" content="Categories of AI tools, API vs. app vs. local, and a vendor-neutral framework for evaluating new tools." />
+    <link rel="stylesheet" href="../css/styles.css" />
+    <script>
+      window.COURSE_BASE = "../";
+      window.COURSE_PAGE = "module";
+      window.COURSE_MODULE = "12";
+    </script>
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to main content</a>
+    <header id="site-header"></header>
+
+    <main id="main" class="page">
+      <p class="eyebrow">Module 12</p>
+      <h1>The AI Tool Landscape</h1>
+      <p class="reading-time">⏱ ~12 min read</p>
+
+      <div class="box box-learn">
+        <h2>What you'll learn</h2>
+        <ul>
+          <li>The main categories of AI tools you'll encounter.</li>
+          <li>The difference between API, app, and local offerings.</li>
+          <li>A vendor-neutral framework for evaluating any new AI tool.</li>
+        </ul>
+      </div>
+
+      <h2>Categories of AI tools</h2>
+      <p>
+        The market is noisy, but most tools fall into a handful of recognizable
+        categories. Knowing the category tells you roughly what a tool does and
+        what questions to ask — without getting lost in brand names.
+      </p>
+      <ul>
+        <li><strong>Chat assistants.</strong> General-purpose conversational tools for drafting, summarizing, explaining, and Q&amp;A.</li>
+        <li><strong>Coding assistants.</strong> Help write, explain, review, and debug code, often inside the editor or IDE.</li>
+        <li><strong>Search &amp; RAG products.</strong> Answer questions grounded in a body of documents (Module 8) — internal knowledge bases, support portals, research tools.</li>
+        <li><strong>Image, audio &amp; video generators.</strong> Create or edit media from text prompts (and increasingly transcription, voice, and translation).</li>
+        <li><strong>Embedded AI features.</strong> AI baked into existing products — your help desk, office suite, security tooling, CRM. Often the way AI quietly enters the org.</li>
+        <li><strong>Agents &amp; automation platforms.</strong> Tools that take multi-step actions across systems (Module 9), with the extra safety considerations that implies.</li>
+      </ul>
+
+      <h2>API vs. app vs. local</h2>
+      <p>
+        The same underlying model can be delivered in very different packages. The
+        delivery model shapes who it's for, how data flows, and what IT must manage.
+      </p>
+      <ul>
+        <li>
+          <strong>API.</strong> A building block for developers. Your software sends
+          prompts and receives responses programmatically, so you can embed AI into
+          your own apps and workflows. Maximum flexibility; requires development.
+        </li>
+        <li>
+          <strong>App.</strong> A finished, ready-to-use product (web, desktop, or
+          mobile) for end users. Fast to adopt; you take the product as-is and rely
+          on the vendor's choices.
+        </li>
+        <li>
+          <strong>Local.</strong> A model running on your own hardware or device, so
+          data never leaves your environment and it can work offline. Strongest data
+          control; you own the infrastructure and upkeep (Module 11).
+        </li>
+      </ul>
+
+      <div class="box box-analogy">
+        <h3>IT analogy</h3>
+        <p>
+          It mirrors how you consume other software: an <strong>API</strong> is like
+          a library you build on, an <strong>app</strong> is like packaged SaaS you
+          roll out, and <strong>local</strong> is like on-prem software you host
+          yourself. Same trade-offs of flexibility, convenience, and control.
+        </p>
+      </div>
+
+      <h2>A vendor-neutral evaluation framework</h2>
+      <p>
+        When a new AI tool lands on IT's desk, resist judging it by hype, brand, or
+        a slick demo. Run it through a consistent framework so you can compare tools
+        fairly and protect your decision from marketing pressure:
+      </p>
+      <ol>
+        <li>
+          <strong>Problem fit.</strong> What specific, real problem does this solve,
+          and is that a problem worth solving? Beware solutions hunting for a use.
+        </li>
+        <li>
+          <strong>Reliability.</strong> Does it solve that problem
+          <em>dependably</em> enough for the stakes involved? Test on your own
+          realistic examples, not the vendor's curated ones.
+        </li>
+        <li>
+          <strong>Data &amp; security.</strong> What data does it touch, and how is
+          that handled, stored, and protected? (Use the Module 11 checklist.) This
+          can be a deal-breaker on its own.
+        </li>
+        <li>
+          <strong>Deployment model.</strong> API, app, or local — and does that
+          match the sensitivity of the data involved?
+        </li>
+        <li>
+          <strong>Total cost.</strong> Pricing model (per-token, per-seat,
+          subscription), plus integration, training, and maintenance — not just the
+          sticker price.
+        </li>
+        <li>
+          <strong>Integration &amp; lock-in.</strong> How well does it fit your
+          existing stack, and how hard is it to switch later?
+        </li>
+        <li>
+          <strong>Support &amp; maturity.</strong> Is the vendor stable, responsive,
+          and clear about limitations and roadmap?
+        </li>
+      </ol>
+
+      <div class="box box-note">
+        <h3>Why vendor-neutral matters</h3>
+        <p>
+          A consistent framework lets you compare tools apples-to-apples on what
+          actually matters — capability, data handling, cost, and fit — instead of
+          on who marketed hardest. The newest, biggest, or flashiest tool is not
+          automatically the right one for your task.
+        </p>
+      </div>
+
+      <h2>You've reached the end — now what?</h2>
+      <p>
+        You now have the conceptual grounding to understand how AI and LLM systems
+        work, where they fail, and how to evaluate them responsibly. You don't need
+        to be an ML researcher to ask the right questions — and asking the right
+        questions is exactly what IT is for. Revisit the
+        <a href="11-security-privacy-governance.html">governance module</a> whenever
+        a new tool appears, and keep the <a href="../glossary.html">glossary</a>
+        handy.
+      </p>
+
+      <div class="box box-takeaways">
+        <h2>Key takeaways</h2>
+        <ul>
+          <li>Most AI tools fit a few categories: chat, coding, search/RAG, media, embedded features, and agents.</li>
+          <li>API = developer building block; app = ready product; local = on your own hardware.</li>
+          <li>Evaluate on problem fit, reliability, data/security, deployment, cost, integration, and support.</li>
+          <li>Stay vendor-neutral: judge tools on substance, not hype.</li>
+        </ul>
+      </div>
+
+      <h2>Check your understanding</h2>
+      <p class="text-muted">Score 75% or higher to mark this module complete.</p>
+      <div id="quiz"></div>
+
+      <nav id="module-nav"></nav>
+    </main>
+
+    <footer id="site-footer"></footer>
+
+    <script src="../js/course.js"></script>
+    <script src="../js/progress.js"></script>
+    <script src="../js/quiz.js"></script>
+    <script src="../js/demos.js"></script>
+  </body>
+</html>
